@@ -112,6 +112,7 @@ add_library(tinyllvm_compiler STATIC
         src/tinyllvm_parser.c
         src/tinyllvm_typechecker.c
         src/tinyllvm_codegen_c.c
+        src/tinyllvm_codegen_ir.c
         include/tinyllvm_compiler.h
 )
 
@@ -136,6 +137,15 @@ if(BUILD_TESTS)
 
     target_link_libraries(tinyllvm_ast_test PRIVATE
             tinyllvm_ast
+    )
+
+    # IR Test
+    add_executable(tinyllvm_ir_test
+            tests/test_ir_generation.c
+    )
+
+    target_link_libraries(tinyllvm_ir_test PRIVATE
+            tinyllvm_compiler
     )
 
     # Integrated Lexer Test (with EventChains)

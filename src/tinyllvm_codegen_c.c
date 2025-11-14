@@ -447,26 +447,31 @@ char *generate_c_code(ASTProgram *program, CompilerConfig *config) {
  * ==============================================================================
  */
 
+/* Forward declaration for IR code generator */
+char *generate_ir_code(ASTProgram *program, CompilerConfig *config);
+
 EventResult compiler_codegen_event(EventContext *context, void *user_data) {
     CompilerConfig *config = (CompilerConfig *)user_data;
-    
+
     EventResult result;
-    
+
     /* Get AST from context */
     ASTProgram *program;
     EventChainErrorCode err = event_context_get(context, "ast", (void**)&program);
-    
+
     if (err != EC_SUCCESS || !program) {
         event_result_failure(&result, "No AST provided to code generator",
                            EC_ERROR_INVALID_PARAMETER, ERROR_DETAIL_FULL);
         return result;
     }
-    
+
     /* Generate code based on target */
     char *output = NULL;
-    
-    if (!config || config->target == TARGET_C || config->target == TARGET_TINYLLVM) {
+
+    if (!config || config->target == TARGET_C) {
         output = generate_c_code(program, config);
+    } else if (config->target == TARGET_TINYLLVM) {
+        output = generate_ir_code(program, config);  // FIXED: Use IR generator!
     } else {
         event_result_failure(&result, "Unsupported code generation target",
                            EC_ERROR_INVALID_PARAMETER, ERROR_DETAIL_FULL);
