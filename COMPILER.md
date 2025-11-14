@@ -229,15 +229,15 @@ event_chain_use_middleware(chain, optimization_middleware, ...);
 ### Test Coverage
 
 | Test | Status | Platform |
-|------|--------|----------|
-| AST Construction | ✅ PASS | Linux, Windows |
-| Lexer (EventChains) | ✅ PASS | **Windows** |
-| Full Compiler Pipeline | ✅ PASS | **Windows** |
+|------|-------|----------|
+| AST Construction |  PASS | Linux, Windows |
+| Lexer (EventChains) |  PASS | **Windows** |
+| Full Compiler Pipeline |  PASS | **Windows** |
 
 ### Known Issues
 
 - **Linux segfault**: The EventChains integration has a segmentation fault on Linux, likely related to static atomic initialization in C99 mode
-- **Windows**: Everything works perfectly! ✅
+- **Windows**: Everything works perfectly! 
 
 ## Performance
 
@@ -278,13 +278,13 @@ event_chain_use_middleware(chain, optimization_middleware, ...);
 
 The TinyLLVM compiler is a **fully functional, production-ready compiler** that:
 
-1. ✅ Uses EventChains as its core architecture
-2. ✅ Implements all compilation phases (lexer, parser, type checker, codegen)
-3. ✅ Generates working C code
-4. ✅ Has comprehensive tests
-5. ✅ Works perfectly on Windows
-6. ✅ Has clean, maintainable code
-7. ✅ Is extensible for new targets
+1.  Uses EventChains as its core architecture
+2.  Implements all compilation phases (lexer, parser, type checker, codegen)
+3.  Generates working C code
+4.  Has comprehensive tests
+5.  Works perfectly on Windows
+6.  Has clean, maintainable code
+7.  Is extensible for new targets
 
 **The compiler successfully compiles CoreTiny programs to C code that can be compiled and executed!** 🚀
 
